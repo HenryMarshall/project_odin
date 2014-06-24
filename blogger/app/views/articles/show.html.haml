@@ -1,0 +1,17 @@
+%h1= @article.title
+%p
+  Tags:
+  - @article.tags.each do |tag|
+    = link_to tag.name, tag_path(tag)
+- if @article.image.exists?
+  %p= image_tag @article.image.url(:medium)
+%p= @article.body
+
+%h3= "Comments (#{@article.comments.size})"
+= render partial: 'articles/comment', collection: @article.comments
+= render partial: 'comments/form'
+
+%p= link_to "<< Back to articles list", articles_path
+- if logged_in?
+  %p= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Really destroy?"}
+  %p= link_to "Edit", edit_article_path(@article)

@@ -1,0 +1,21 @@
+= form_for(@article, html: {multipart: true}) do |f|
+  %ul
+    - @article.errors.full_messages.each do |error|
+      %li= error
+  %p
+    = f.label :title
+    = f.text_field :title
+  %p
+    = f.label :body
+    = f.text_area :body
+  %p
+    = f.label :tag_list
+    = f.text_field :tag_list
+  %p
+    -# show the image if one has already been uploaded
+    - if @article.image.exists?
+      = image_tag @article.image.url
+    = f.label :image, "Attach an image"
+    = f.file_field :image
+  %p
+    = f.submit

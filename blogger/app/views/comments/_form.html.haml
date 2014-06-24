@@ -1,0 +1,11 @@
+%h3 Post a comment
+/ had to add 
+= form_for [@article, @comment] do |f|
+  %p
+    = f.label :author_name, "Your name"
+    = f.text_field :author_name
+  %p
+    = f.label :body
+    = f.text_area :body
+  %p
+    = f.submit 'Submit'

@@ -1,0 +1,23 @@
+`scaffold` generates: model, controller, and views
+`scaffold_controller` generates: controller, and views
+
+
+Bugs
+
+You wrote:
+    I bet the console reported that a had [] tags – an empty list.
+I had an empty string
+    2.1.2 :011 > c = Article.last
+      Article Load (0.5ms)  SELECT  "articles".* FROM "articles"   ORDER BY "articles"."id" DESC LIMIT 1
+     => #<Article id: 12, title: "tag_list=(tags_string)", body: "arot", created_at: "2014-06-23 14:55:43", updated_at: "2014-06-23 14:55:43"> 
+    2.1.2 :012 > c.tags
+      Tag Load (0.2ms)  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."article_id" = ?  [["article_id", 12]]
+     => #<ActiveRecord::Associations::CollectionProxy []> 
+    2.1.2 :013 > c.tag_list
+     => "" 
+
+When writing about validates_attachment_content_type for the paperclip gem markdown italicizes several methods containing underscores.
+    As of version 4.0, all attachments are required to include a contenttype validation, a filename validation, or to explicitly state that they’re not going to have either. Paperclip raises MissingRequiredValidatorError error if you do not do this. So, we add the validatesattachmentcontent_type line so that our model will validate that it is receiving a proper filetype.
+
+To do that, open the migration file *_sorcery_code.rb file under db/migrate and add make sure your file looks like this:
+    should be "*_sorcery_core.rb"
