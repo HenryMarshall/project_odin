@@ -22,9 +22,5 @@ def merge array1, array2
   end
 
   # once an array is empty, append the other
-  if array1.empty?
-    result += array2
-  else
-    result += array1
-  end
+  array1.empty? ? result += array2 : result += array1
 end
