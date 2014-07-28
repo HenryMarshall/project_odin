@@ -1,0 +1,61 @@
+Why is it important what you name your models, controllers, and views?
+    Rails magic assumes that views share the name of the actions. Controllers and their actions are named the same as the routes
+Where is the view file located that's rendered by default for a given controller?
+    app/views/<controller_name>/<action_name>.html.haml
+What's the difference between a #render and a #redirect_to?
+    a redirect is a completely new http request -- instance variables are lost
+    a render is part of the same http request -- pass variables back
+What happens to the controller's instance variables in each case?
+    see above
+What is a shortcut for redirecting to a specific Post (tip: this works in all kinds of places like #link_to and #*_path)
+    `redirect_to post_path(@post.id)` == `redirect_to @post`
+Does a method finish executing or get interrupted when it hits a #render or #redirect_to?
+    it does not. 
+What happens if you have multiple renders or redirects?
+    multiple renders cause an error
+What are Strong Parameters?
+    explicitly whitelist parameters that can be used
+When can you just use the params hash directly and when do you need to specifically "whitelist" its contents?
+    if data comes from the big bad scary internet
+What are "scalar" values?
+    flat (not-nested) data (e.g., strings, numbers, nil; not arrays, hashes)
+What does #require do? #permit?
+    in your whitelist specifies state of fields
+What's the #flash?
+    a special hash that is transmitted on redirect
+What's the difference between #flash and #flash.now?
+    use flash.now on renders, it happens as part of the same http request
+
+
+
+What is a layout?
+    things shared across all pages (navbar, header &c)
+What's the difference between a "view template" and a "layout"?
+    view template is the thing rendered by the controller
+What is a "Preprocessor"?
+Why are preprocessors useful?
+How do you make sure a preprocessor runs on your file?
+What's the outputted filetype of a preprocessed *.html.erb file? What about a *.css.scss file?
+What is the difference between the <%= and <% tags?
+What is a view partial?
+
+How do you insert a partial into your view?
+    `render "some_partial"`
+    put shared partials in a special folder `app/views/shared`
+    include with `render "shared/some_partial"`
+How can you tell that a view file is a partial?
+    filename begins with an underscore: `_some_partial`
+How do you pass a local variable to a partial?
+    pass it an options hash with the option `:locals`
+    render "shared/your_partial", :locals => { :user => @user }
+    to use the var, drop the `@` and call as a normal var (e.g., `user`)
+What's the magical Rails shortcut for rendering a User? A bunch of Users?
+    tell rails to render the object directly
+    @users.each do |user| { render user }
+    contrast with:
+    @users.each do |user| { render "user", :locals => {:user => user} }
+    for a list of users, this can further be abbreviated
+    render @users
+What are asset tags and why are they used?
+    include assets like images, css, js
+Use `content_for :section` to support multiple yields in a layout

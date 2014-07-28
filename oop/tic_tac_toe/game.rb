@@ -32,7 +32,7 @@ class Game
 
   def round player
     draw_game()
-    puts "#{player.name}'s Turn"
+    print "#{player.name}'s Turn: "
     position = convert_input_to_array_position(player.pick_square)
     
     if square_used?(position)
@@ -41,8 +41,18 @@ class Game
       map_placement!(position, player) 
     end
 
-    won?(player)
-    tie?()
+    if won?(player)
+      draw_game()
+      puts "#{player.name} Won!"
+      exit
+    end
+
+    if tie?
+      draw_game()
+      puts "a tie -- how predictable" 
+      exit
+    end
+
   end
 
   def randomize_first_player
@@ -77,22 +87,17 @@ class Game
     return @game_state.all? do |row|
       # if none are digits cannot go (true)
       row.none? { |cell| cell.to_i != 0 }
-      draw_game()
-      puts "----------------"
-      puts "A tie. How predictable"
-      exit
+      # draw_game()
+      # puts "----------------"
+      # puts "A tie. How predictable"
+      # exit
     end
   end
 
   def won? player
     victory_conditions = [won_by_row?(player), won_by_column?(player),
                           won_by_diagonal?(player)]
-    if victory_conditions.any?
-      draw_game()
-      puts "---------------"
-      puts "#{player.name} Won!"
-      exit
-    end
+    victory_conditions.any?
   end
 
   def won_by_row? player
