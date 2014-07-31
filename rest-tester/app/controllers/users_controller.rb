@@ -1,19 +1,19 @@
 class UsersController < ApplicationController
 
   def index
-    @index = "The Index Action"
+    @name = "The Index Action"
   end
 
   def edit
-    @edit = "The Edit Action"
+    @name = "The Edit Action"
   end
 
   def show
-    @show = "The Show Action"
+    @name = "The Show Action"
   end
 
   def new
-    @new = "The New Action"
+    @name = "The New Action"
   end
 
 end
