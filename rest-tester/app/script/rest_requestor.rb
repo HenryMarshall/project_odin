@@ -12,8 +12,8 @@ puts RestClient.get("#{url}/new")
 puts RestClient.get("#{url_id}/edit")
 
 # create
-puts RestClient.post(url_id, "")
+puts RestClient.post(url, "")
 # update
 puts RestClient.update(url_id, "")
-# destory
+# destroy
 puts RestClient.destory(url_id)

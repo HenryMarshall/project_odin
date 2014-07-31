@@ -16,4 +16,13 @@ class UsersController < ApplicationController
     @name = "The New Action"
   end
 
+  def destroy
+  end
+
+  def update
+  end
+
+  def create
+  end
+
 end
