@@ -1,0 +1,9 @@
+<header>
+  <% if signed_in? %>
+    <%= link_to current_user.username, user_path(current_user)%>
+    <%= link_to 'Signout', signout_path %>
+  <% else %>
+    <%= link_to 'Signup', new_user_path %>
+    <%= link_to 'Signin', signin_path %>
+  <% end %>
+</header>
