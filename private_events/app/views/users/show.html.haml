@@ -1,2 +1,6 @@
-%h1 SHOW
-= "username: #{@user.username}"
+%h1= "Show #{@user.username}'s events"
+
+%ul.events
+  - @events.each do |event|
+    %li
+      = event.description
