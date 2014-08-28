@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # user must not be logged in to create new user
+
   def new
     @user = User.new
   end
@@ -16,6 +18,5 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @events = @user.events
   end
 end
