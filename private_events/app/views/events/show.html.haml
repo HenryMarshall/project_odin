@@ -2,3 +2,8 @@
 %h3
   Hosted by: 
   = link_to @event.creator.username, user_path(@event.creator)
+%hr
+%h3 Attendees
+%ul
+  - @event.attendees.each do |attendee|
+    %li= attendee.username

@@ -1,6 +1,12 @@
 %h1= "Show #{@user.username}'s events"
-
+%h3 Hosted Events
 %ul.events
   - @user.events.each do |event|
+    %li
+      = link_to event.description, event_path(event)
+
+%h3 Attended Events
+%ul.events
+  - @user.attended_events.each do |event|
     %li
       = link_to event.description, event_path(event)
